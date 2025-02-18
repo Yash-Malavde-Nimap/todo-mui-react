@@ -6,10 +6,8 @@ export const TodoContext = createContext();
 
 const TodoContextProvider = ({ children }) => {
   const todosArr = JSON.parse(localStorage.getItem("todos"));
-  // console.log();
   const [todos, setTodos] = useState(todosArr);
   const [input, setInput] = useState("");
-  const [todo, setTodo] = useState({});
 
   const addTodo = () => {
     if (input.trim()) {
@@ -40,9 +38,6 @@ const TodoContextProvider = ({ children }) => {
     ]);
   };
 
-  const singleTodo = (id) => {
-    setTodo(todos.filter((todo) => todo.id === id));
-  };
 
   const toggleDelete = (id) => {
     localStorage.setItem("todos", [
@@ -61,8 +56,6 @@ const TodoContextProvider = ({ children }) => {
         addTodo,
         input,
         setInput,
-        singleTodo,
-        todo,
       }}
     >
       {children}
