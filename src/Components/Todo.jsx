@@ -3,22 +3,27 @@ import { Button, TableCell, TableRow } from "@mui/material";
 import TodoDialog from "./TodoDialog";
 
 const Todo = ({ todo, toggleCompletion, toggleDelete }) => {
+  // const { todo } = useContext(TodoContext);
+  const { title, id, completed } = todo;
+
+  // console.log(todo)
+
   return (
-    <TableRow key={todo.id}>
+    <TableRow key={id}>
       <TableCell
         style={{
           textDecoration: todo.completed ? "line-through" : "none",
         }}
       >
-        {todo.title}
+        {title}
       </TableCell>
       <TableCell style={{ display: "flex", gap: "20px" }}>
         <Button
           variant="outlined"
-          color={todo.completed ? "warning" : "success"}
+          color={completed ? "warning" : "success"}
           onClick={() => toggleCompletion(todo.id)}
         >
-          {todo.completed ? "Incomplete" : "Done"}
+          {completed ? "Incomplete" : "Done"}
         </Button>
         <Button
           variant="contained"
@@ -28,7 +33,7 @@ const Todo = ({ todo, toggleCompletion, toggleDelete }) => {
           Delete
         </Button>
 
-        <TodoDialog todo={todo}/>
+        <TodoDialog key={id} todo={todo} />
       </TableCell>
     </TableRow>
   );

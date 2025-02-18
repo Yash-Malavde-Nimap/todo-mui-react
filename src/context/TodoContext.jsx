@@ -9,6 +9,7 @@ const TodoContextProvider = ({ children }) => {
   // console.log();
   const [todos, setTodos] = useState(todosArr);
   const [input, setInput] = useState("");
+  const [todo, setTodo] = useState({});
 
   const addTodo = () => {
     if (input.trim()) {
@@ -39,8 +40,11 @@ const TodoContextProvider = ({ children }) => {
     ]);
   };
 
+  const singleTodo = (id) => {
+    setTodo(todos.filter((todo) => todo.id === id));
+  };
+
   const toggleDelete = (id) => {
-    console.log(todos);
     localStorage.setItem("todos", [
       JSON.stringify(todos.filter((todo) => todo.id !== id)),
     ]);
@@ -49,7 +53,17 @@ const TodoContextProvider = ({ children }) => {
 
   return (
     <TodoContext.Provider
-      value={{ todos, setTodos, toggleCompletion, toggleDelete, addTodo,input,setInput }}
+      value={{
+        todos,
+        setTodos,
+        toggleCompletion,
+        toggleDelete,
+        addTodo,
+        input,
+        setInput,
+        singleTodo,
+        todo,
+      }}
     >
       {children}
     </TodoContext.Provider>

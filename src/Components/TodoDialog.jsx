@@ -14,13 +14,18 @@ const TodoDialog = ({ todo }) => {
   const [open, setOpen] = useState(false);
   const [dialogTitle, setDialogTitle] = useState(todo.title);
 
-  const { todos } = useContext(TodoContext);
+  const { setTodos } = useContext(TodoContext);
 
-  console.log(todos);
+  const handleEdit = (e) => {
+    e.preventDefault();
+    
+    setOpen(false)
 
-  const handleEdit = () => {
-    todo.title = dialogTitle;
-    setOpen(false);
+    setTodos((prevTodos) =>
+      prevTodos.map((t) =>
+        t.id === todo.id ? { ...t, title: dialogTitle } : t
+      )
+    );
   };
 
   return (
