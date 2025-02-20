@@ -11,14 +11,28 @@ const Todo = ({ todo, toggleCompletion, toggleDelete }) => {
   return (
     <TableRow key={id}>
       <TableCell
+        align="center"
         style={{
           textDecoration: todo.completed ? "line-through" : "none",
+          color: "#b2b2b2",
         }}
       >
         {title}
       </TableCell>
+      <TableCell
+        align="center"
+        style={{
+          fontSize: "1.1rem",
+          fontWeight: "bold",
+          color: "#b2b2b2",
+        }}
+      >
+        {todo.completed ? "Yes" : "No"}
+      </TableCell>
+
       <TableCell style={{ display: "flex", gap: "20px" }}>
         <Button
+          align="center"
           variant="outlined"
           color={completed ? "warning" : "success"}
           onClick={() => toggleCompletion(todo.id)}
@@ -26,6 +40,7 @@ const Todo = ({ todo, toggleCompletion, toggleDelete }) => {
           {completed ? "Incomplete" : "Done"}
         </Button>
         <Button
+          align="center"
           variant="contained"
           color="warning"
           onClick={() => toggleDelete(todo.id)}

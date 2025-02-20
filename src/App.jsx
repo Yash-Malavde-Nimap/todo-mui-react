@@ -13,6 +13,23 @@ import {
 import Todo from "./Components/Todo";
 import { useContext } from "react";
 import { TodoContext } from "./context/TodoContext";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles(() => ({
+  // button: {
+  //   width: "30%",
+  //   backgroundColor: "#4CAF50", // Green button for contrast
+  //   color: "#fff",
+  //   padding: "12px",
+  //   borderRadius: "8px",
+  //   fontSize: "1rem",
+  //   fontWeight: "bold",
+  // },
+
+  // heading: {
+  //   fontFamily: "monospace",
+  // },
+}));
 
 const TodoApp = () => {
   const {
@@ -25,10 +42,13 @@ const TodoApp = () => {
     addTodo,
   } = useContext(TodoContext);
 
+  const classes = useStyles();
+
+  // console.log(classes);
   return (
     <div
       style={{
-        backgroundColor: "#2b2b2b9c", // Light gray background
+        backgroundColor: "#212121", // Light gray background
         height: "100vh",
         display: "flex",
         justifyContent: "center",
@@ -37,7 +57,7 @@ const TodoApp = () => {
         padding: "20px",
       }}
     >
-      <h1 style={{ marginBottom: "20px", fontSize: "2rem", color: "#333" }}>
+      <h1 style={{ marginBottom: "20px", fontSize: "2rem", color: "#b2b2b2" }}>
         To-Do List
       </h1>
 
@@ -54,31 +74,34 @@ const TodoApp = () => {
       >
         <TextField
           label=""
-          variant="outlined"
+          variant="standard"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           style={{
             marginBottom: "15px",
             width: "100%",
-            padding: "12px",
+            padding: "20px",
             borderRadius: "8px",
-            backgroundColor: "#fff", // White background to make the input pop
+            backgroundColor: "#2f2f2f",
+            color: "#fff",
           }}
-          placeholder="Enter a new task..." // Custom placeholder text
+          inputProps={{
+            style: {
+              color: "#b2b2b2",
+              outlineColor:'#0d0d0d'
+            },
+          }}
+          placeholder="Enter a new task..."
         />
 
         <Button
           variant="contained"
           onClick={addTodo}
           style={{
-            width: "100%",
-            backgroundColor: "#4CAF50", // Green button for contrast
-            color: "#fff",
-            padding: "12px",
-            borderRadius: "8px",
-            fontSize: "1rem",
-            fontWeight: "bold",
+            background:'#f9f9f9',
+            color:'#0d0d0d',
           }}
+          className={classes.button}
         >
           Add Task
         </Button>
@@ -90,32 +113,46 @@ const TodoApp = () => {
           width: "100%",
           maxWidth: "700px", // Limit table width for better design
           marginTop: "30px",
-          padding: "20px",
+          padding: "10px",
           borderRadius: "8px",
-          background: "#fff",
-          boxShadow: "0 4px 12px rgba(255, 255, 255, 0.1)", // Add soft shadow
+          background: "#2f2f2f",
+          // color:'#b2b2b2'
+          // boxShadow: "0 4px 12px rgba(255, 255, 255, 0.1)", // Add soft shadow
         }}
       >
         <Table>
           <TableHead>
             <TableRow>
               <TableCell
+                align="center"
                 style={{
                   fontSize: "1.1rem",
                   fontWeight: "bold",
-                  color: "#333",
+                  color: "#b2b2b2",
                 }}
               >
                 Task
               </TableCell>
               <TableCell
+                align="center"
                 style={{
                   fontSize: "1.1rem",
                   fontWeight: "bold",
-                  color: "#333",
+                  color: "#b2b2b2",
                 }}
               >
                 Completed
+              </TableCell>
+
+              <TableCell
+                align="center"
+                style={{
+                  fontSize: "1.1rem",
+                  fontWeight: "bold",
+                  color: "#b2b2b2",
+                }}
+              >
+                Actions
               </TableCell>
             </TableRow>
           </TableHead>
