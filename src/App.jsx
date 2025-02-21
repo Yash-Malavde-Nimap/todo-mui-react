@@ -13,9 +13,10 @@ import {
 import Todo from "./Components/Todo";
 import { useContext } from "react";
 import { TodoContext } from "./context/TodoContext";
-import { makeStyles } from "@mui/styles";
+// import { makeStyles } from "@mui/styles";
+import "./App.scss";
 
-const useStyles = makeStyles(() => ({
+// const useStyles = makeStyles(() => ({
   // button: {
   //   width: "30%",
   //   backgroundColor: "#4CAF50", // Green button for contrast
@@ -25,11 +26,10 @@ const useStyles = makeStyles(() => ({
   //   fontSize: "1rem",
   //   fontWeight: "bold",
   // },
-
   // heading: {
   //   fontFamily: "monospace",
   // },
-}));
+// }));
 
 const TodoApp = () => {
   const {
@@ -42,22 +42,26 @@ const TodoApp = () => {
     addTodo,
   } = useContext(TodoContext);
 
-  const classes = useStyles();
+  // const classes = useStyles();
 
   // console.log(classes);
   return (
     <div
-      style={{
-        backgroundColor: "#212121", // Light gray background
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        padding: "20px",
-      }}
+      // style={{
+      //   backgroundColor: "#212121", // Light gray background
+      //   height: "100vh",
+      //   display: "flex",
+      //   justifyContent: "center",
+      //   alignItems: "center",
+      //   flexDirection: "column",
+      //   padding: "20px",
+      // }}
+      className="main-body"
     >
-      <h1 style={{ marginBottom: "20px", fontSize: "2rem", color: "#b2b2b2" }}>
+      <h1
+        className="main-heading"
+        //  style={{ marginBottom: "20px", fontSize: "2rem", color: "#b2b2b2" }}
+      >
         To-Do List
       </h1>
 
@@ -73,22 +77,23 @@ const TodoApp = () => {
         }}
       >
         <TextField
+          className="todo-input"
           label=""
           variant="standard"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          style={{
-            marginBottom: "15px",
-            width: "100%",
-            padding: "20px",
-            borderRadius: "8px",
-            backgroundColor: "#2f2f2f",
-            color: "#fff",
-          }}
+          // style={{
+          //   marginBottom: "15px",
+          //   width: "100%",
+          //   padding: "20px",
+          //   borderRadius: "8px",
+          //   backgroundColor: "#2f2f2f",
+          //   color: "#fff",
+          // }}
           inputProps={{
             style: {
               color: "#b2b2b2",
-              outlineColor:'#0d0d0d'
+              outlineColor: "#0d0d0d",
             },
           }}
           placeholder="Enter a new task..."
@@ -97,11 +102,12 @@ const TodoApp = () => {
         <Button
           variant="contained"
           onClick={addTodo}
-          style={{
-            background:'#f9f9f9',
-            color:'#0d0d0d',
-          }}
-          className={classes.button}
+          className="todo-button"
+          // style={{
+          //   background: "#f9f9f9",
+          //   color:#0d0d0d "",
+          // }}
+          // className={classes.button}
         >
           Add Task
         </Button>
@@ -109,6 +115,7 @@ const TodoApp = () => {
 
       <TableContainer
         component={Paper}
+        className="todos"
         style={{
           width: "100%",
           maxWidth: "700px", // Limit table width for better design
@@ -125,38 +132,41 @@ const TodoApp = () => {
             <TableRow>
               <TableCell
                 align="center"
-                style={{
-                  fontSize: "1.1rem",
-                  fontWeight: "bold",
-                  color: "#b2b2b2",
-                }}
+                // style={{
+                //   fontSize: "1.1rem",
+                //   fontWeight: "bold",
+                //   color: "#b2b2b2",
+                // }}
+                className="table-header"
               >
                 Task
               </TableCell>
               <TableCell
+                className="table-header"
                 align="center"
-                style={{
-                  fontSize: "1.1rem",
-                  fontWeight: "bold",
-                  color: "#b2b2b2",
-                }}
+                // style={{
+                //   fontSize: "1.1rem",
+                //   fontWeight: "bold",
+                //   color: "#b2b2b2",
+                // }}
               >
                 Completed
               </TableCell>
 
               <TableCell
+                className="table-header"
                 align="center"
-                style={{
-                  fontSize: "1.1rem",
-                  fontWeight: "bold",
-                  color: "#b2b2b2",
-                }}
+                // style={{
+                //   fontSize: "1.1rem",
+                //   fontWeight: "bold",
+                //   color: "#b2b2b2",
+                // }}
               >
                 Actions
               </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className="todo-item">
             {todos?.map((todo, i) => (
               <Todo
                 key={i}

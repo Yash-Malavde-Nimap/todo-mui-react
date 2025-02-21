@@ -9,12 +9,14 @@ const Todo = ({ todo, toggleCompletion, toggleDelete }) => {
   // console.log(todo)
 
   return (
-    <TableRow key={id}>
+    <TableRow key={id} >
       <TableCell
         align="center"
         style={{
           textDecoration: todo.completed ? "line-through" : "none",
           color: "#b2b2b2",
+          textWrap:'balance',
+          // width:'10%'
         }}
       >
         {title}
